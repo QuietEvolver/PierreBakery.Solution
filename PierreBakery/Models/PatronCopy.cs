@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-namespace Library.Models
+namespace PierreBakery.Models
 {
   public class PatronCopy
     {

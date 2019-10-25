@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Models
+namespace PierreBakery.Models
 {
-    public class LibraryContext : IdentityDbContext<ApplicationUser>
+    public class PierreBakeryContext : IdentityDbContext<ApplicationUser>
   {
     public virtual DbSet<Patron> Patrons { get; set; }
     public DbSet<Book> Books { get; set; }
@@ -12,6 +12,6 @@ namespace Library.Models
     public DbSet<Copy> Copies { get; set; }
     public DbSet<PatronCopy> PatronCopy { get; set; }
 
-    public LibraryContext(DbContextOptions options) : base(options) { }
+    public PierreBakeryContext(DbContextOptions options) : base(options) { }
   }
 }

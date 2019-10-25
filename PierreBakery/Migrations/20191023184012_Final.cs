@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Library.Migrations
+namespace PierreBakery.Migrations
 {
     public partial class Final : Migration
     {

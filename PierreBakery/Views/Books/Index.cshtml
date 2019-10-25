@@ -2,8 +2,8 @@
   Layout = "_Layout";
 }
 
-@using Library.Models;
-@model IEnumerable<Library.Models.Book>
+@using PierreBakery.Models;
+@model IEnumerable<PierreBakery.Models.Book>
 
 <h1>Books for @User.Identity.Name</h1>
 
@@ -18,7 +18,7 @@
 }
 else
 {
-  <h3>No bookss have been added yet!</h3>
+  <h3>No books have been added yet!</h3>
 }
 
 <p>@Html.ActionLink("Add new book", "Create")</p>

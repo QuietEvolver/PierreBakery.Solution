@@ -1,4 +1,4 @@
-namespace Library.ViewModels
+namespace PierreBakery.ViewModels
 {
     public class LoginViewModel
     {

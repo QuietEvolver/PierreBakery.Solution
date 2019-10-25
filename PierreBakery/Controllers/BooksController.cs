@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Library.Models;
+using PierreBakery.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-namespace Library.Controllers
+namespace PierreBakery.Controllers
 {
   [Authorize]
   public class BooksController : Controller
   {
-    private readonly LibraryContext _db;
+    private readonly PierreBakeryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public BooksController(UserManager<ApplicationUser> userManager, LibraryContext db)
+    public BooksController(UserManager<ApplicationUser> userManager, PierreBakeryContext db)
     {
       _userManager = userManager;
       _db = db;

@@ -1,4 +1,4 @@
-namespace Library.Models
+namespace PierreBakery.Models
 {
   public class PatronBook
     {

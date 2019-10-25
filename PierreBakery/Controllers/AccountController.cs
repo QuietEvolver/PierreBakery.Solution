@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Library.Models;
+using PierreBakery.Models;
 using System.Threading.Tasks;
-using Library.ViewModels;
+using PierreBakery.ViewModels;
 
-namespace Library.Controllers
+namespace PierreBakery.Controllers
 {
   public class AccountController : Controller
   {
-    private readonly LibraryContext _db;
+    private readonly PierreBakeryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, LibraryContext db)
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierreBakeryContext db)
     {
         _userManager = userManager;
         _signInManager = signInManager;

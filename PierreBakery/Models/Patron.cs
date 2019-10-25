@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Library.Models
+namespace PierreBakery.Models
 {
   public class Patron
     {

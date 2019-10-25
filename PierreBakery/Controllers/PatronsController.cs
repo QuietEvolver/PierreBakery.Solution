@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Library.Models;
+using PierreBakery.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-namespace Library.Controllers
+namespace PierreBakery.Controllers
 {
   public class PatronsController : Controller
   {
-    private readonly LibraryContext _db;
+    private readonly PierreBakeryContext _db;
 
-    public PatronsController(LibraryContext db)
+    public PatronsController(PierreBakeryContext db)
     {
       _db = db;
     }
