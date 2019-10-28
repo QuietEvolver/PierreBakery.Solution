@@ -2,20 +2,20 @@
   Layout = "_Layout";
 }
 
-@model PierreBakery.Models.Patron
+@model PierreBakery.Models.Employee
 
-<h2>Add a copy</h2>
+<h2>Add a type</h2>
 
-<h4>Add a copy to this patron: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Add a type by this employee: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.PatronId)
+    @Html.HiddenFor(model => model.EmployeeId)
 
-    @Html.Label("Select copy")
-    @Html.DropDownList("CopyId")
+    @Html.Label("Select type")
+    @Html.DropDownList("TypeId")
 
     <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back to copies", "Index")</p>
+<p>@Html.ActionLink("Back to types", "Index")</p>
