@@ -83,9 +83,9 @@ id  Title       CopyId/num
 - [License](#-license)
 
 ## 📋 Specifications
-Add functionality to update the type without deleting it (Hint: Create a new boolean type property and set a default value of true/false.)
- - | Input: Cheese | Output: Cheese |
-Allow employees to enter for types.
+Add functionality to update the type  
+ - | Input: Cheese | Output: Cheese | 
+Allow employees to enter types. 
  - | Input: Rolls: Treat Apple:Flavor | Output: Apple Rolls |
  - | Input: Danish : Treat Apple:Flavor | Output: Cheese and Apple Danish  |
 
@@ -97,34 +97,34 @@ Allow employees to enter for types.
  - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
  - [MySQL](https://www.mysql.com)
     SetUp Using MySQL:
-    > DROP DATABASE IF EXISTS `PierreBakery_registrar_db`;
-    > CREATE DATABASE `PierreBakery_registrar_db`;
-    > USE `PierreBakery_registrar_db`;
+    > DROP DATABASE IF EXISTS `PierreBakery_registrar_database`;
+    > CREATE DATABASE `PierreBakery_registrar_database`;
+    > USE `PierreBakery_registrar_database`;
 
     > CREATE TABLE `employees` ( `EmployeeId` int(11) 
     > NOT NULL AUTO_INCREMENT, 
     > `Name` varchar(255) DEFAULT NULL, 
-    > PRIMARY KEY (`EmployeeId`) 
-    > )
+    > PRIMARY KEY (`EmployeeId`)
+    > );
   
     > CREATE TABLE `flavors` (
     >   `FlavorId` int(11) NOT NULL AUTO_INCREMENT,
     >   `Description` varchar(255) DEFAULT NULL,
-    >   PRIMARY KEY (`FlavorId`)
-    > )
+    >   PRIMARY KEY (`FlavorId`);
+    > );
 
 
     > CREATE TABLE `treats` ( `TreatId` int(11) 
     > NOT NULL AUTO_INCREMENT, 
     > `Name` varchar(255) DEFAULT NULL, 
-    > PRIMARY KEY (`TreatId`) 
-    > )
+    > PRIMARY KEY (`TreatId`)
+    > );
 
     > CREATE TABLE `treatsFlavors` (
-    >   `treatsFlavorId` int(11) NOT NULL AUTO_INCREMENT,
+    >   `treatFlavorId` int(11) NOT NULL AUTO_INCREMENT,
     >   `Description` varchar(255) DEFAULT NULL,
-    >   PRIMARY KEY (`treatsFlavorId`)
-    > )
+    >   PRIMARY KEY (`treatFlavorId`)
+    > );
 
 
  - [Entity Framework 6](https://docs.microsoft.com/en-us/ef/ef6/)
