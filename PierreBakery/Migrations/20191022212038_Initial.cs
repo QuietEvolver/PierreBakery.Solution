@@ -48,16 +48,16 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Patrons",
+                name: "Employees",
                 columns: table => new
                 {
-                    PatronId = table.Column<int>(nullable: false)
+                    EmployeeId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Patrons", x => x.PatronId);
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,10 +167,10 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "Flavors",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(nullable: false)
+                    FlavorId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Author = table.Column<string>(nullable: true),
@@ -178,9 +178,9 @@ namespace PierreBakery.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.BookId);
+                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
                     table.ForeignKey(
-                        name: "FK_Books_AspNetUsers_UserId",
+                        name: "FK_Flavors_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -188,28 +188,28 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PatronBook",
+                name: "EmployeeFlavor",
                 columns: table => new
                 {
-                    PatronBookId = table.Column<int>(nullable: false)
+                    EmployeeFlavorId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    BookId = table.Column<int>(nullable: false),
-                    PatronId = table.Column<int>(nullable: false)
+                    FlavorId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PatronBook", x => x.PatronBookId);
+                    table.PrimaryKey("PK_EmployeeFlavor", x => x.EmployeeFlavorId);
                     table.ForeignKey(
-                        name: "FK_PatronBook_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "BookId",
+                        name: "FK_EmployeeFlavor_Flavors_FlavorId",
+                        column: x => x.FlavorId,
+                        principalTable: "Flavors",
+                        principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PatronBook_Patrons_PatronId",
-                        column: x => x.PatronId,
-                        principalTable: "Patrons",
-                        principalColumn: "PatronId",
+                        name: "FK_EmployeeFlavor_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -251,19 +251,19 @@ namespace PierreBakery.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_UserId",
-                table: "Books",
+                name: "IX_Flavors_UserId",
+                table: "Flavors",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronBook_BookId",
-                table: "PatronBook",
-                column: "BookId");
+                name: "IX_EmployeeFlavor_FlavorId",
+                table: "EmployeeFlavor",
+                column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronBook_PatronId",
-                table: "PatronBook",
-                column: "PatronId");
+                name: "IX_EmployeeFlavor_EmployeeId",
+                table: "EmployeeFlavor",
+                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -284,16 +284,16 @@ namespace PierreBakery.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PatronBook");
+                name: "EmployeeFlavor");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Flavors");
 
             migrationBuilder.DropTable(
-                name: "Patrons");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -69,112 +69,112 @@ namespace PierreBakery.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Author", b =>
+            modelBuilder.Entity("PierreBakery.Models.Treat", b =>
                 {
-                    b.Property<int>("AuthorId")
+                    b.Property<int>("TreatId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("AuthorId");
+                    b.HasKey("TreatId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Treats");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.AuthorBook", b =>
+            modelBuilder.Entity("PierreBakery.Models.TreatFlavor", b =>
                 {
-                    b.Property<int>("AuthorBookId")
+                    b.Property<int>("TreatFlavorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AuthorId");
+                    b.Property<int>("TreatId");
 
-                    b.Property<int>("BookId");
+                    b.Property<int>("FlavorId");
 
-                    b.HasKey("AuthorBookId");
+                    b.HasKey("TreatFlavorId");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("TreatId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("FlavorId");
 
-                    b.ToTable("AuthorBook");
+                    b.ToTable("TreatFlavor");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Book", b =>
+            modelBuilder.Entity("PierreBakery.Models.Flavor", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<int>("FlavorId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Title");
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("BookId");
+                    b.HasKey("FlavorId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Flavors");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Copy", b =>
+            modelBuilder.Entity("PierreBakery.Models.Type", b =>
                 {
-                    b.Property<int>("CopyId")
+                    b.Property<int>("TypeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BookId");
+                    b.Property<int>("FlavorId");
 
-                    b.Property<int?>("PatronId");
+                    b.Property<int?>("EmployeeId");
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("CopyId");
+                    b.HasKey("TypeId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("FlavorId");
 
-                    b.HasIndex("PatronId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Copies");
+                    b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Patron", b =>
+            modelBuilder.Entity("PierreBakery.Models.Employee", b =>
                 {
-                    b.Property<int>("PatronId")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("PatronId");
+                    b.HasKey("EmployeeId");
 
-                    b.ToTable("Patrons");
+                    b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.PatronCopy", b =>
+            modelBuilder.Entity("PierreBakery.Models.EmployeeType", b =>
                 {
-                    b.Property<int>("PatronCopyId")
+                    b.Property<int>("EmployeeTypeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CheckDate");
 
-                    b.Property<int>("CopyId");
+                    b.Property<int>("TypeId");
 
                     b.Property<DateTime>("DueDate");
 
-                    b.Property<int>("PatronId");
+                    b.Property<int>("EmployeeId");
 
                     b.Property<DateTime>("ReturnDate");
 
-                    b.HasKey("PatronCopyId");
+                    b.HasKey("EmployeeTypeId");
 
-                    b.HasIndex("CopyId");
+                    b.HasIndex("TypeId");
 
-                    b.HasIndex("PatronId");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("PatronCopy");
+                    b.ToTable("EmployeeType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -284,59 +284,59 @@ namespace PierreBakery.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Author", b =>
+            modelBuilder.Entity("PierreBakery.Models.Treat", b =>
                 {
                     b.HasOne("PierreBakery.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.AuthorBook", b =>
+            modelBuilder.Entity("PierreBakery.Models.TreatFlavor", b =>
                 {
-                    b.HasOne("PierreBakery.Models.Author", "Author")
-                        .WithMany("Books")
-                        .HasForeignKey("AuthorId")
+                    b.HasOne("PierreBakery.Models.Treat", "Treat")
+                        .WithMany("Flavors")
+                        .HasForeignKey("TreatId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PierreBakery.Models.Book", "Book")
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId")
+                    b.HasOne("PierreBakery.Models.Flavor", "Flavor")
+                        .WithMany("Treats")
+                        .HasForeignKey("FlavorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Book", b =>
+            modelBuilder.Entity("PierreBakery.Models.Flavor", b =>
                 {
                     b.HasOne("PierreBakery.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Copy", b =>
+            modelBuilder.Entity("PierreBakery.Models.Type", b =>
                 {
-                    b.HasOne("PierreBakery.Models.Book", "Book")
+                    b.HasOne("PierreBakery.Models.Flavor", "Flavor")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("FlavorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PierreBakery.Models.Patron", "Patron")
+                    b.HasOne("PierreBakery.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("PatronId");
+                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("PierreBakery.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.PatronCopy", b =>
+            modelBuilder.Entity("PierreBakery.Models.EmployeeType", b =>
                 {
-                    b.HasOne("PierreBakery.Models.Copy", "Copy")
-                        .WithMany("Patrons")
-                        .HasForeignKey("CopyId")
+                    b.HasOne("PierreBakery.Models.Type", "Type")
+                        .WithMany("Employees")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PierreBakery.Models.Patron", "Patron")
-                        .WithMany("Copies")
-                        .HasForeignKey("PatronId")
+                    b.HasOne("PierreBakery.Models.Employee", "Employee")
+                        .WithMany("Types")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

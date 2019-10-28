@@ -35,7 +35,7 @@ id  Title       CopyId/num
 
 <h1 align="center">
   <a href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-image.travelandleisure.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F1600x1000%2Fpublic%2F1449517667%2FNico-Osteria-XMAS1215.jpg%3Fitok%3DWAIGAVRN&imgrefurl=https%3A%2F%2Fwww.travelandleisure.com%2Fslideshows%2Fbest-restaurants-open-on-christmas&docid=XQ496gQQlk3zuM&tbnid=Svoa8v5w8ClfUM%3A&vet=10ahUKEwiJ_PjD3aHlAhXKvZ4KHQbVCwQQMwh5KAEwAQ..i&w=1600&h=1000&bih=481&biw=1286&q=best%20restaurant&ved=0ahUKEwiJ_PjD3aHlAhXKvZ4KHQbVCwQQMwh5KAEwAQ&iact=mrc&uact=8">
-    Catalogue Salon
+    Pierre's Bakery
   </a>
 </h1>
 
@@ -83,12 +83,11 @@ id  Title       CopyId/num
 - [License](#-license)
 
 ## 📋 Specifications
-Add functionality to mark an Item as completed without deleting it (Hint: Create a new boolean Item property and set a default value of true/false.)
- - | Input: Jaques | Output: Jaques EEID: 2 |
-Allow users to assign due dates for Items.
- - | Input: Robert ApptRequestTime: 12PM | Output: Jaques: 12PM - Robert $50 |
-Sort items by their due date. Check out the LINQ documentation on OrderBy - let LINQ do the sorting, not C#.
- - | Input: Robert ApptRequestTime: 12PM | Output: Jaques: 12PM - Robert $50 |
+Add functionality to update the type without deleting it (Hint: Create a new boolean type property and set a default value of true/false.)
+ - | Input: Cheese | Output: Cheese |
+Allow employees to enter for types.
+ - | Input: Rolls: Treat Apple:Flavor | Output: Apple Rolls |
+ - | Input: Danish : Treat Apple:Flavor | Output: Cheese and Apple Danish  |
 
 
 ## 📋 Requirements
@@ -101,13 +100,6 @@ Sort items by their due date. Check out the LINQ documentation on OrderBy - let 
     > DROP DATABASE IF EXISTS `PierreBakery_registrar_db`;
     > CREATE DATABASE `PierreBakery_registrar_db`;
     > USE `PierreBakery_registrar_db`;
-
-    > CREATE TABLE `clients` (
-    >   `ClientId` int(11) NOT NULL AUTO_INCREMENT,
-    >   `Description` varchar(255) DEFAULT NULL,
-    >   PRIMARY KEY (`ClientId`)
-    > )
-
 
     > CREATE TABLE `employees` ( `EmployeeId` int(11) 
     > NOT NULL AUTO_INCREMENT, 
@@ -128,6 +120,13 @@ Sort items by their due date. Check out the LINQ documentation on OrderBy - let 
     > PRIMARY KEY (`TreatId`) 
     > )
 
+    > CREATE TABLE `treatsFlavors` (
+    >   `treatsFlavorId` int(11) NOT NULL AUTO_INCREMENT,
+    >   `Description` varchar(255) DEFAULT NULL,
+    >   PRIMARY KEY (`treatsFlavorId`)
+    > )
+
+
  - [Entity Framework 6](https://docs.microsoft.com/en-us/ef/ef6/)
  - [Entity Framework Core](https://entityframeworkcore.com/)
 
@@ -136,7 +135,7 @@ Sort items by their due date. Check out the LINQ documentation on OrderBy - let 
 
 The full documentation for [GH-Pages](https://github.blog/2016-08-22-publish-your-project-documentation-with-github-pages/)
 
-The source for the Catalogue: PierreBakery documentation and website is hosted on a separate repo: [**quietevolver**][repo-website]. The deployed version is at [**quietevolver**](https://quietevolver.github.io/PierreBakery.Solution/).
+The source for the Shoppe: PierreBakery documentation and website is hosted on a separate repo: [**quietevolver**][repo-website]. The deployed version is at [**quietevolver**](https://quietevolver.github.io/PierreBakery.Solution/).
 
 [docs]: https://github.com/QuietEvolver/PierreBakery.Solution.git
 [repo-website]: https://github.com/QuietEvolver/PierreBakery.Solution.git
@@ -145,11 +144,11 @@ The source for the Catalogue: PierreBakery documentation and website is hosted o
 
 The main purpose of this repository is to continue evolving. I am grateful to the community for feedback, contributing bugfixes, and improvements.
 
-### [Open Source PierreBakery][eau_claire_salon]
+### [Open Source PierreBakery][pierre_bakery]
 
-You can learn more about our vision for Catalogue: Hair Salon in the [**PierreBakery**][hair_salon].
+You can learn more about our vision for Pierre's Bakery in the [**PierreBakery**][hair_salon].
 
-[eau_claire_salon]: https://github.com/facebook/react-native/wiki/PierreBakery
+[pierre_bakery]: https://github.com/facebook/react-native/wiki/PierreBakery
 
 ### Contact
 | Author | GitHub | Email |

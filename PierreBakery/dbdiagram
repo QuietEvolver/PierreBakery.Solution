@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="186" y="435" name="books">
+</datatypes><table x="186" y="435" name="flavors">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -48,7 +48,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="184" y="279" name="authors">
+<table x="184" y="279" name="treats">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -59,7 +59,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="426" y="636" name="patron">
+<table x="426" y="636" name="employee">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -70,45 +70,45 @@
 <part>id</part>
 </key>
 </table>
-<table x="428" y="501" name="copies">
+<table x="428" y="501" name="types">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="book_id" null="1" autoincrement="0">
+<row name="flavor_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="books" row="id" />
+<default>NULL</default><relation table="flavors" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="427" y="322" name="authorbook">
+<table x="427" y="322" name="treatflavor">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="author_id" null="1" autoincrement="0">
+<row name="treat_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="authors" row="id" />
+<default>NULL</default><relation table="treats" row="id" />
 </row>
-<row name="book_id" null="1" autoincrement="0">
+<row name="flavor_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="books" row="id" />
+<default>NULL</default><relation table="flavors" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="655" y="537" name="patroncopy">
+<table x="655" y="537" name="employeetype">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="copy_id" null="1" autoincrement="0">
+<row name="type_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="copies" row="id" />
+<default>NULL</default><relation table="types" row="id" />
 </row>
-<row name="patron_id" null="1" autoincrement="0">
+<row name="employee_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="patron" row="id" />
+<default>NULL</default><relation table="employee" row="id" />
 </row>
 <row name="checkdate" null="1" autoincrement="0">
 <datatype>DATE</datatype>

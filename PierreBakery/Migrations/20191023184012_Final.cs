@@ -9,26 +9,26 @@ namespace PierreBakery.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PatronBook");
+                name: "EmployeeFlavor");
 
             migrationBuilder.DropColumn(
-                name: "Author",
-                table: "Books");
+                name: "Treat",
+                table: "Flavors");
 
             migrationBuilder.CreateTable(
-                name: "Authors",
+                name: "Treats",
                 columns: table => new
                 {
-                    AuthorId = table.Column<int>(nullable: false)
+                    TreatId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.AuthorId);
+                    table.PrimaryKey("PK_Treats", x => x.TreatId);
                     table.ForeignKey(
-                        name: "FK_Authors_AspNetUsers_UserId",
+                        name: "FK_Treats_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -36,32 +36,32 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Copies",
+                name: "Types",
                 columns: table => new
                 {
-                    CopyId = table.Column<int>(nullable: false)
+                    TypeId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    BookId = table.Column<int>(nullable: false),
-                    PatronId = table.Column<int>(nullable: true),
+                    FlavorId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Copies", x => x.CopyId);
+                    table.PrimaryKey("PK_Types", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Copies_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "BookId",
+                        name: "FK_Types_Flavors_FlavorId",
+                        column: x => x.FlavorId,
+                        principalTable: "Flavors",
+                        principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Copies_Patrons_PatronId",
-                        column: x => x.PatronId,
-                        principalTable: "Patrons",
-                        principalColumn: "PatronId",
+                        name: "FK_Types_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Copies_AspNetUsers_UserId",
+                        name: "FK_Types_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -69,155 +69,155 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuthorBook",
+                name: "TreatFlavor",
                 columns: table => new
                 {
-                    AuthorBookId = table.Column<int>(nullable: false)
+                    TreatFlavorId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    AuthorId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false)
+                    TreatId = table.Column<int>(nullable: false),
+                    FlavorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorBook", x => x.AuthorBookId);
+                    table.PrimaryKey("PK_TreatFlavor", x => x.TreatFlavorId);
                     table.ForeignKey(
-                        name: "FK_AuthorBook_Authors_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Authors",
-                        principalColumn: "AuthorId",
+                        name: "FK_TreatFlavor_Treats_TreatId",
+                        column: x => x.TreatId,
+                        principalTable: "Treats",
+                        principalColumn: "TreatId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AuthorBook_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "BookId",
+                        name: "FK_TreatFlavor_Flavors_FlavorId",
+                        column: x => x.FlavorId,
+                        principalTable: "Flavors",
+                        principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PatronCopy",
+                name: "EmployeeType",
                 columns: table => new
                 {
-                    PatronCopyId = table.Column<int>(nullable: false)
+                    EmployeeTypeId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CopyId = table.Column<int>(nullable: false),
-                    PatronId = table.Column<int>(nullable: false),
+                    TypeId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
                     CheckDate = table.Column<DateTime>(nullable: false),
                     DueDate = table.Column<DateTime>(nullable: false),
                     ReturnDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PatronCopy", x => x.PatronCopyId);
+                    table.PrimaryKey("PK_EmployeeType", x => x.EmployeeTypeId);
                     table.ForeignKey(
-                        name: "FK_PatronCopy_Copies_CopyId",
-                        column: x => x.CopyId,
-                        principalTable: "Copies",
-                        principalColumn: "CopyId",
+                        name: "FK_EmployeeType_Types_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "Types",
+                        principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PatronCopy_Patrons_PatronId",
-                        column: x => x.PatronId,
-                        principalTable: "Patrons",
-                        principalColumn: "PatronId",
+                        name: "FK_EmployeeType_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorBook_AuthorId",
-                table: "AuthorBook",
-                column: "AuthorId");
+                name: "IX_TreatFlavor_TreatId",
+                table: "TreatFlavor",
+                column: "TreatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorBook_BookId",
-                table: "AuthorBook",
-                column: "BookId");
+                name: "IX_TreatFlavor_FlavorId",
+                table: "TreatFlavor",
+                column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Authors_UserId",
-                table: "Authors",
+                name: "IX_Treats_UserId",
+                table: "Treats",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Copies_BookId",
-                table: "Copies",
-                column: "BookId");
+                name: "IX_Types_FlavorId",
+                table: "Types",
+                column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Copies_PatronId",
-                table: "Copies",
-                column: "PatronId");
+                name: "IX_Types_EmployeeId",
+                table: "Types",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Copies_UserId",
-                table: "Copies",
+                name: "IX_Types_UserId",
+                table: "Types",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronCopy_CopyId",
-                table: "PatronCopy",
-                column: "CopyId");
+                name: "IX_EmployeeType_TypeId",
+                table: "EmployeeType",
+                column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronCopy_PatronId",
-                table: "PatronCopy",
-                column: "PatronId");
+                name: "IX_EmployeeType_EmployeeId",
+                table: "EmployeeType",
+                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AuthorBook");
+                name: "TreatFlavor");
 
             migrationBuilder.DropTable(
-                name: "PatronCopy");
+                name: "EmployeeType");
 
             migrationBuilder.DropTable(
-                name: "Authors");
+                name: "Treats");
 
             migrationBuilder.DropTable(
-                name: "Copies");
+                name: "Types");
 
             migrationBuilder.AddColumn<string>(
-                name: "Author",
-                table: "Books",
+                name: "Treat",
+                table: "Flavors",
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "PatronBook",
+                name: "EmployeeFlavor",
                 columns: table => new
                 {
-                    PatronBookId = table.Column<int>(nullable: false)
+                    EmployeeFlavorId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    BookId = table.Column<int>(nullable: false),
-                    PatronId = table.Column<int>(nullable: false)
+                    FlavorId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PatronBook", x => x.PatronBookId);
+                    table.PrimaryKey("PK_EmployeeFlavor", x => x.EmployeeFlavorId);
                     table.ForeignKey(
-                        name: "FK_PatronBook_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "BookId",
+                        name: "FK_EmployeeFlavor_Flavors_FlavorId",
+                        column: x => x.FlavorId,
+                        principalTable: "Flavors",
+                        principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PatronBook_Patrons_PatronId",
-                        column: x => x.PatronId,
-                        principalTable: "Patrons",
-                        principalColumn: "PatronId",
+                        name: "FK_EmployeeFlavor_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronBook_BookId",
-                table: "PatronBook",
-                column: "BookId");
+                name: "IX_EmployeeFlavor_FlavorId",
+                table: "EmployeeFlavor",
+                column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatronBook_PatronId",
-                table: "PatronBook",
-                column: "PatronId");
+                name: "IX_EmployeeFlavor_EmployeeId",
+                table: "EmployeeFlavor",
+                column: "EmployeeId");
         }
     }
 }
