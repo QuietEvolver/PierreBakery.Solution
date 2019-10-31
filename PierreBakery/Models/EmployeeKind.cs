@@ -2,10 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 namespace PierreBakery.Models
 {
-  public class EmployeeType
+  public class EmployeeKind
     {
-        public int EmployeeTypeId { get; set; }
-        public int TypeId { get; set; }
+        public int EmployeeKindId { get; set; }
+        public int KindId { get; set; }
         public int EmployeeId { get; set; }
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode=true)]
         [DataType(DataType.Date)]
@@ -16,7 +16,7 @@ namespace PierreBakery.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode=true)]
         [DataType(DataType.Date)]
         public DateTime ReturnDate { get; set; }
-        public Type Type { get; set; }
+        public Kind Kind { get; set; }
         public Employee Employee { get; set; }
     }
 }

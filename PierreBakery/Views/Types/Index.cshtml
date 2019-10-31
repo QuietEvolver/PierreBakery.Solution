@@ -3,20 +3,20 @@
 }
 
 @using PierreBakery.Models;
-@model IEnumerable<PierreBakery.Models.Copy>
+@model IEnumerable<PierreBakery.Models.Kind>
 
 <h1>Books for @User.Identity.Name</h1>
 
 @if (!@Model.Any())
 {
-  <h3>No copies have been added yet!</h3>
+  <h3>No kind has yet been added.</h3>
 }
 
-@foreach (Copy copy in Model)
+@foreach (Kind kind in Model)
 {
-  <li>@Html.ActionLink($"{copy.CopyId}", "Details", new { id = copy.CopyId })</li>
+  <li>@Html.ActionLink($"{kind.KindId}", "Details", new { id = kind.KindId })</li>
 }
 
-<p>@Html.ActionLink("Add new copy", "Create")</p>
+<p>@Html.ActionLink("Add new kind", "Create")</p>
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

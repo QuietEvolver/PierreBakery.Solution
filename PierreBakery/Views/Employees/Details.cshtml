@@ -8,17 +8,17 @@
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
-@if(@Model.Types.Count == 0)
+@if(@Model.Kinds.Count == 0)
 {
   <p>This employee does not contain any types</p>
 }
 else
 {
-  <h4>Book Types the employee contains:</h4>
+  <h4>Book Kinds the employee contains:</h4>
   <ul>
-  @foreach(var join in Model.Types)
+  @foreach(var join in Model.Kinds)
   {
-    <li>@join.Type.TypeId</li>
+    <li>@join.Kind.KindId</li>
   }
   </ul>
 }
@@ -26,4 +26,4 @@ else
 <p>@Html.ActionLink("Back to employees", "Index")</p>
 <p>@Html.ActionLink("Edit Employee", "Edit", new { id = Model.EmployeeId })</p>
 <p>@Html.ActionLink("Delete Employee", "Delete", new { id = Model.EmployeeId })</p>
-<p>@Html.ActionLink("Add Type", "AddType", new { id = Model.EmployeeId })</p>
+<p>@Html.ActionLink("Add Kind", "AddKind", new { id = Model.EmployeeId })</p>

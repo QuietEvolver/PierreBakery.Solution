@@ -12,12 +12,12 @@ using System.Security.Claims;
 namespace PierreBakery.Controllers
 {
   [Authorize]
-  public class TypesController : Controller
+  public class KindsController : Controller
   {
     private readonly PierreBakeryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TypesController(UserManager<ApplicationUser> userManager, PierreBakeryContext db)
+    public KindsController(UserManager<ApplicationUser> userManager, PierreBakeryContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -27,23 +27,23 @@ namespace PierreBakery.Controllers
     {
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);
-        var userTypes = _db.Types.Where(entry => entry.User.Id == currentUser.Id);
-        return View(userTypes);
+        var userKinds = _db.Kinds.Where(entry => entry.User.Id == currentUser.Id);
+        return View(userKinds);
     }
 
     public ActionResult AddEmployee(int id)
     {
-        var thisType = _db.Types.FirstOrDefault(types => types.TypeId == id);
+        var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
         ViewBag.EmployeeId = new SelectList(_db.Employees, "EmployeeId", "Name");
-        return View(thisType);
+        return View(thisKind);
     }
 
     [HttpPost]
-    public ActionResult AddEmployee(Type type, int EmployeeId)
+    public ActionResult AddEmployee(Kind kind, int EmployeeId)
     {
         if (EmployeeId != 0)
         {
-        _db.EmployeeType.Add(new EmployeeType() { EmployeeId = EmployeeId, TypeId = type.TypeId });
+        _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
         }
         _db.SaveChanges();
         return RedirectToAction("Index");
@@ -56,15 +56,15 @@ namespace PierreBakery.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Type type, int EmployeeId)
+    public async Task<ActionResult> Create(Kind kind, int EmployeeId)
     {
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);
-        type.User = currentUser;
-        _db.Types.Add(type);
+        kind.User = currentUser;
+        _db.Kinds.Add(kind);
         if (EmployeeId != 0)
         {
-            _db.EmployeeType.Add(new EmployeeType() { EmployeeId = EmployeeId, TypeId = type.TypeId });
+            _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
         }
         _db.SaveChanges();
         return RedirectToAction("Index");
@@ -72,43 +72,43 @@ namespace PierreBakery.Controllers
 
     public ActionResult Details(int id)
     {
-        var thisType = _db.Types
-            .Include(type => type.Employees)
+        var thisKind = _db.Kinds
+            .Include(kind => kind.Employees)
             .ThenInclude(join => join.Employee)
-            .FirstOrDefault(type => type.TypeId == id);
-        return View(thisType);
+            .FirstOrDefault(kind => kind.KindId == id);
+        return View(thisKind);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisType = _db.Types.FirstOrDefault(types => types.TypeId == id);
+      var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
       ViewBag.EmployeeId = new SelectList(_db.Employees, "EmployeeId", "Name");
-      return View(thisType);
+      return View(thisKind);
     }
 
     [HttpPost]
-    public ActionResult Edit(Type type, int EmployeeId)
+    public ActionResult Edit(Kind kind, int EmployeeId)
     {
       if (EmployeeId != 0)
       {
-        _db.EmployeeType.Add(new EmployeeType() { EmployeeId = EmployeeId, TypeId = type.TypeId });
+        _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
       }
-      _db.Entry(type).State = EntityState.Modified;
+      _db.Entry(kind).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      var thisType = _db.Types.FirstOrDefault(types => types.TypeId == id);
-      return View(thisType);
+      var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
+      return View(thisKind);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisType = _db.Types.FirstOrDefault(types => types.TypeId == id);
-      _db.Types.Remove(thisType);
+      var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
+      _db.Kinds.Remove(thisKind);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -116,8 +116,8 @@ namespace PierreBakery.Controllers
     [HttpPost]
     public ActionResult DeleteEmployee(int joinId)
     {
-        var joinEntry = _db.EmployeeType.FirstOrDefault(entry => entry.EmployeeTypeId == joinId);
-        _db.EmployeeType.Remove(joinEntry);
+        var joinEntry = _db.EmployeeKind.FirstOrDefault(entry => entry.EmployeeKindId == joinId);
+        _db.EmployeeKind.Remove(joinEntry);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }

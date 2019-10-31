@@ -42,23 +42,23 @@ namespace PierreBakery.Controllers
     public ActionResult Details(int id)
     {
         var thisEmployee = _db.Employees
-            .Include(employee => employee.Types)
-            .ThenInclude(join => join.Type)
+            .Include(employee => employee.Kinds)
+            .ThenInclude(join => join.Kind)
             .FirstOrDefault(employee => employee.EmployeeId == id);
         return View(thisEmployee);
     }
-    public ActionResult AddType(int id)
+    public ActionResult AddKind(int id)
     {
         var thisEmployee = _db.Employees.FirstOrDefault(employees => employees.EmployeeId == id);
-        ViewBag.TypeId = new SelectList(_db.Types, "TypeId", "TypeId");
+        ViewBag.KindId = new SelectList(_db.Kinds, "KindId", "KindId");
         return View(thisEmployee);
     }
     [HttpPost]
-    public ActionResult AddType(Employee employee, int TypeId)
+    public ActionResult AddKind(Employee employee, int KindId)
     {
-        if (TypeId != 0)
+        if (KindId != 0)
         {
-        _db.EmployeeType.Add(new EmployeeType() { TypeId = TypeId, EmployeeId = employee.EmployeeId });
+        _db.EmployeeKind.Add(new EmployeeKind() { KindId = KindId, EmployeeId = employee.EmployeeId });
         }
         _db.SaveChanges();
         return RedirectToAction("Index");

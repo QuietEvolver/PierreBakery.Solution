@@ -5,33 +5,11 @@ Pierre is back! He wants you to create a new application to market his sweet and
 
 The application should have user authentication. A user should be able to log in and log out. Only logged in users should have create, update and delete functionality. All users should be able to have read functionality.
 There should be a many-to-many relationship between Treats and Flavors. A treat can have many flavors (such as sweet, savory, spicy, or creamy) and a flavor can have many treats. For instance, the "sweet" flavor could include chocolate croissants, cheesecake, and so on.
-A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
-
-This is the prior git --head commit: d32ff643fdc79289b52de37f9b5afc296159d82c 
-
-
+A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.d32ff643
 
 dotnet ef migrations add Initial
 dotnet ef database update
 https://ondras.zarovi.cz/sql/demo/
-
-
-copies:
-id  "book id"
-1   dictionary
-2   dictionary
-3   dictionary
-4
-5
-
-books:
-id  Title       CopyId/num
-1   dictionary  5
-2     
-3
-4
-5
-
 
 <h1 align="center">
   <a href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-image.travelandleisure.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F1600x1000%2Fpublic%2F1449517667%2FNico-Osteria-XMAS1215.jpg%3Fitok%3DWAIGAVRN&imgrefurl=https%3A%2F%2Fwww.travelandleisure.com%2Fslideshows%2Fbest-restaurants-open-on-christmas&docid=XQ496gQQlk3zuM&tbnid=Svoa8v5w8ClfUM%3A&vet=10ahUKEwiJ_PjD3aHlAhXKvZ4KHQbVCwQQMwh5KAEwAQ..i&w=1600&h=1000&bih=481&biw=1286&q=best%20restaurant&ved=0ahUKEwiJ_PjD3aHlAhXKvZ4KHQbVCwQQMwh5KAEwAQ&iact=mrc&uact=8">

@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 namespace PierreBakery.Models
 {
-  public class Type
+  public class Kind
   {
-    public Type()
+    public Kind()
     {
-      this.Employees = new HashSet<EmployeeType>();
+      this.Employees = new HashSet<EmployeeKind>();
     }
-    public int TypeId { get; set; }
+    public int KindId { get; set; }
     public int FlavorId { get; set; }
     public Flavor Flavor { get; set; }
     public Employee Employee { get; set; }
 
-    public ICollection<EmployeeType> Employees { get;}
+    public ICollection<EmployeeKind> Employees { get;}
     public virtual ApplicationUser User { get; set; }
   }
 }

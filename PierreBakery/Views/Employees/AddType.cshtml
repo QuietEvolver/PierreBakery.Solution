@@ -4,18 +4,18 @@
 
 @model PierreBakery.Models.Employee
 
-<h2>Add a type</h2>
+<h2>Add a kind</h2>
 
-<h4>Add a type by this employee: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Add a kind by this employee: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.EmployeeId)
 
-    @Html.Label("Select type")
-    @Html.DropDownList("TypeId")
+    @Html.Label("Select kind")
+    @Html.DropDownList("KindId")
 
     <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back to types", "Index")</p>
+<p>@Html.ActionLink("Back to kinds", "Index")</p>

@@ -119,9 +119,9 @@ namespace PierreBakery.Migrations
                     b.ToTable("Flavors");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Type", b =>
+            modelBuilder.Entity("PierreBakery.Models.Kind", b =>
                 {
-                    b.Property<int>("TypeId")
+                    b.Property<int>("KindId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("FlavorId");
@@ -130,7 +130,7 @@ namespace PierreBakery.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("TypeId");
+                    b.HasKey("KindId");
 
                     b.HasIndex("FlavorId");
 
@@ -138,7 +138,7 @@ namespace PierreBakery.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Types");
+                    b.ToTable("Kinds");
                 });
 
             modelBuilder.Entity("PierreBakery.Models.Employee", b =>
@@ -153,14 +153,14 @@ namespace PierreBakery.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.EmployeeType", b =>
+            modelBuilder.Entity("PierreBakery.Models.EmployeeKind", b =>
                 {
-                    b.Property<int>("EmployeeTypeId")
+                    b.Property<int>("EmployeeKindId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CheckDate");
 
-                    b.Property<int>("TypeId");
+                    b.Property<int>("KindId");
 
                     b.Property<DateTime>("DueDate");
 
@@ -168,13 +168,13 @@ namespace PierreBakery.Migrations
 
                     b.Property<DateTime>("ReturnDate");
 
-                    b.HasKey("EmployeeTypeId");
+                    b.HasKey("EmployeeKindId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("KindId");
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeType");
+                    b.ToTable("EmployeeKind");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -311,7 +311,7 @@ namespace PierreBakery.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.Type", b =>
+            modelBuilder.Entity("PierreBakery.Models.Kind", b =>
                 {
                     b.HasOne("PierreBakery.Models.Flavor", "Flavor")
                         .WithMany()
@@ -327,15 +327,15 @@ namespace PierreBakery.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("PierreBakery.Models.EmployeeType", b =>
+            modelBuilder.Entity("PierreBakery.Models.EmployeeKind", b =>
                 {
-                    b.HasOne("PierreBakery.Models.Type", "Type")
+                    b.HasOne("PierreBakery.Models.Kind", "Kind")
                         .WithMany("Employees")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("KindId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PierreBakery.Models.Employee", "Employee")
-                        .WithMany("Types")
+                        .WithMany("Kinds")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

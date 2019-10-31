@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
-<!-- Active URL: https://ondras.zarovi.cz/sql/demo/ -->
+<!-- Active URL: https://ondras.zarovi.cz/sql/demo/ --> 
 <sql>
 <datatypes db="mysql">
 	<group label="Numeric" color="rgb(238,238,170)">
@@ -70,7 +70,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="428" y="501" name="kinds">
+<table x="428" y="501" name="types">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -98,13 +98,13 @@
 <part>id</part>
 </key>
 </table>
-<table x="655" y="537" name="employeekind">
+<table x="655" y="537" name="employeetype">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="kind_id" null="1" autoincrement="0">
+<row name="type_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="kinds" row="id" />
+<default>NULL</default><relation table="types" row="id" />
 </row>
 <row name="employee_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -112,8 +112,13 @@
 </row>
 <row name="checkdate" null="1" autoincrement="0">
 <datatype>DATE</datatype>
-<default>NULL</default>
-</row>
+<default>NULL</default></row>
+<row name="duedate" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="returndate" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
