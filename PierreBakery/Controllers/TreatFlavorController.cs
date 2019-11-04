@@ -56,20 +56,20 @@ namespace PierreBakery.Controllers
         return View();
     }
 
-    // [HttpPost]
-    // public async Task<ActionResult> Create(Kind kind, int EmployeeId)
-    // {
-    //     var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    //     var currentUser = await _userManager.FindByIdAsync(userId);
-    //     kind.User = currentUser;
-    //     _db.Kinds.Add(kind);
-    //     if (EmployeeId != 0)
-    //     {
-    //         _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
-    //     }
-    //     _db.SaveChanges();
-    //     return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public async Task<ActionResult> Create(TreatFlavor treatFlavor)
+    {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        treatFlavor.User = currentUser;
+        _db.TreatFlavor.Add(treatFlavor);
+        // if (EmployeeId != 0)
+        // {
+        //     _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
+        // }
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
 
     // public ActionResult Details(int id)
     // {
