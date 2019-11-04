@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierreBakery.Models;
+@model IEnumerable<PierreBakery.Models.TreatFlavor>
+
+<h1>Kinds for @User.Identity.Name</h1>
+
+@if (!@Model.Any())
+{
+  <h3>No kind has yet been added.</h3>
+}
+
+@foreach (TreatFlavor treatFlavor in Model)
+{
+  <li>@Html.ActionLink($"{treatFlavor.TreatFlavorId}", "Details", new { id = treatFlavor.TreatFlavorId })</li>
+}
+
+<p>@Html.ActionLink("Add new kind", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

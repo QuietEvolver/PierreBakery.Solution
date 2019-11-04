@@ -37,8 +37,9 @@ namespace PierreBakery.Controllers
     }
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
-    {
+    {   System.Console.WriteLine($"{model.Email}, {model.Password}");
         Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+        System.Console.WriteLine($"{result.Succeeded}");
         if (result.Succeeded)
         {
             return RedirectToAction("Index");
@@ -58,7 +59,7 @@ namespace PierreBakery.Controllers
     public async Task<ActionResult> Register (RegisterViewModel model)
     {
         var user = new ApplicationUser { UserName = model.Email };
-        IdentityResult result = await _userManager.CreateAsync(user);//, model.Password
+        IdentityResult result = await _userManager.CreateAsync(user, model.Password);//
         if (result.Succeeded)//(true) 
         {
             return RedirectToAction("Index");

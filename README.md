@@ -1,5 +1,16 @@
 PierreBakery
 
+
+CREATE TABLE `TreatFlavor` (
+  `TreatFlavorId` int(11) NOT NULL AUTO_INCREMENT,
+   `TreatId` int(11) NOT NULL,
+   `FlavorId` int(11) NOT NULL, 
+   foreign key  (FlavorId) REFERENCES Flavors(FlavorId),
+   foreign key  (TreatId) REFERENCES Treats(TreatId),
+   primary key (TreatFlavorId)
+ );
+
+
 Pierre's Sweet and Savory Treats
 Pierre is back! He wants you to create a new application to market his sweet and savory treats. This time, he would like you to build an application with user authentication and a many-to-many relationship. Here are the features he wants in the application:
 

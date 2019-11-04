@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierreBakery.Models.TreatFlavor
+
+<h4>Add a new kind</h4>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(model => model.TreatFlavorId)
+
+    @Html.Label("Select flavor")
+    @Html.DropDownList("FlavorId")
+    
+    @Html.Label("Select treat")
+    @Html.DropDownList("TreatId")
+    <input type="submit" value="Add new kind" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all kinds or Treat(s)/Flavor(s)", "Index")</p>
