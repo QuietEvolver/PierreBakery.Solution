@@ -100,8 +100,16 @@ namespace PierreBakery.Controllers
 
     public ActionResult Delete(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var thisTreat = _db.Treats.FirstOrDefault(flavors => flavors.TreatId == id);
-      return View(thisTreat);
+      System.Console.WriteLine(userId);
+      System.Console.WriteLine(thisTreat.User);
+      if (thisTreat.User.Id == userId){
+        return View(thisTreat);
+      }
+      else {
+        return View("Index");
+      }
     }
 
     [HttpPost, ActionName("Delete")]

@@ -1,0 +1,30 @@
+@using PierreBakery.Models;
+@{
+  var treats = ViewBag.allTreats as IEnumerable<Treat>;
+  var flavors = ViewBag.allFlavors as IEnumerable<Flavor>;
+  Layout = "_Layout";
+}
+
+
+<h1>Treats All View</h1>
+
+  <ul>
+    @foreach (Treat treat in treats)
+    {
+      <li>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId })</li>
+    }
+  </ul>
+  <h1>Flavors All View</h1>
+
+  <ul>
+    @foreach (Flavor flavor in flavors)
+    {
+      <li>@Html.ActionLink($"{flavor.Title}", "Details", "Flavors", new { id = flavor.FlavorId })</li>
+    }
+  </ul>
+
+
+<p>@Html.ActionLink("Add new treat", "Create", "Treats")</p>
+<p>@Html.ActionLink("Add new flavor", "Create", "Flavors")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
