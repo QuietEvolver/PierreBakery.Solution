@@ -45,6 +45,7 @@ namespace PierreBakery.Controllers
         }
         else
         {
+            System.Console.WriteLine("View showing");
             return View();
         }
     }
