@@ -10,6 +10,134 @@ CREATE TABLE `TreatFlavor` (
    primary key (TreatFlavorId)
  );
 
+Hey Vera,
+
+As we were talking about with Leilani, the fix for your database is to: 
+* drop database 
+* delete contents of  Migrations folder 
+ - keep the following files: 
+--[Timestamp]_Initial.cs
+--[Timestamp]_Initial.Designer.cs
+--[Timestamp]_SeedData.cs
+--[Timestamp]_SeedData.Designer.cs
+--MyContextModelSnapshot.cs
+The follwoing code belongs in the last file:
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace YourProjectFolderNameHere.Migrations
+{
+    public partial class Initial : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+
+        }
+    }
+}
+* run in terminal: dotnet ef migrations add Initial 
+After Initial is implemented, run the following to update any made changes: 
+* run in terminal: dotnet ef database update
+If an error occurs prior to GitCommit, the following command reverts the migration: 
+* dotnet ef migrations remove
+
+Next, add Models/ProjectFolderNameHereContext.cs file:
+using Microsoft.EntityFrameworkCore;
+EX.The JOIN entity
+namespace ToDoList.Models
+{
+  public class ToDoListContext : DbContext
+  {
+    public virtual DbSet<Category> Categories { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<CategoryItem> CategoryItem { get; set; }
+
+    public ToDoListContext(DbContextOptions options) : base(options) { }
+  }
+}
+Each DbSet we've included will become a table in our database. We've previously declared both Categories and Items DbSets, but now include a CategoryItem DbSet as well that represents our join table.
+
+Then, build a class in the Models folder for the new JOIN (ex.CategoryClass) configured in the XXDbContext.cs with the current project folder name: 
+Models/DesignTimeDbContextFactory.cs
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+
+namespace ToDoList.Models
+{
+  public class ToDoListContextFactory : IDesignTimeDbContextFactory<ToDoListContext>
+  {
+
+    ToDoListContext IDesignTimeDbContextFactory<ToDoListContext>.CreateDbContext(string[] args)
+    {
+      IConfigurationRoot configuration = new ConfigurationBuilder()
+          .SetBasePath(Directory.GetCurrentDirectory())
+          .AddJsonFile("appsettings.json")
+          .Build();
+
+      var builder = new DbContextOptionsBuilder<ToDoListContext>();
+      var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+      builder.UseMySql(connectionString);
+
+      return new ToDoListContext(builder.Options);
+    }
+  }
+}
+
+Following above, build a Models/DesignTimeDbContextFactory.cs file
+GraphQLs: 
+https://developer.github.com/v4/
+
+https://developer.github.com/v4/guides/forming-calls/
+
+MS ex. 
+https://dotnettutorials.net/lesson/token-based-authentication-web-api/
+https://github.com/dotnet-architecture/eShopOnWeb
+download book: file:///Users/Guest/Downloads/Architecting-Modern-Web-Applications-with-ASP.NET-Core-and-Azure.pdf
+https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/
+TypesCRONOS: https://ir.thecronosgroup.com/governance/board-of-directors
+https://thecronosgroup.com/index.php#about
+abrahm-uw: https://github.com/Glacian22/Blobber-Royale-Native-Client
+MVC.NET Pagination: https://www.mikesdotnetting.com/article/328/simple-paging-in-asp-net-core-razor-pages
+RIT: https://scholar.google.com/citations?hl=en&user=hb_08rUAAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=quietevolver99%40gmail.com&gmla=AJsN-F5NJ9PfRIDkbuABEdV53X_uCmEWOSNRyYiwlUusdP-k86O80q5FfTio4OssxKtAxisV77xl-MHOnMBSe8-erZ8DoPfBeZo318bsxe3-1aUnVp8z-RRCwgWzeg9QvA9m_VtrHa9o796SFnVDWmjuSMK7YWutxcjgMtILNpnUBkAwetTRa9zEwEahVkxWvjatheTd8Mpw0S9ot2i3Yyjs9zSc5cV3j_k3ASdJx9ksAfQ9WLtJZSztaz-0jJbzHvLyZIJm6ip_
+RITsmelss: https://github.com/search?q=cnewman%40se.rit.edu&type=Code
+DownLOAD tsDETECT in RIT (open source) CLI: https://testsmells.github.io/
+SWAGGER API: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
+swaggerOauth: https://swagger.io/docs/specification/authentication/
+https://www.kronos.com/
+
+
+
+
+The only other thing is the TreatFlavors controller for Details is not working. You can either fix the controller or remove it entirely. You should also clean up the top part of your Readme, update the instructions, etc. Do all this and this is a full pass!
+
+Keep up the hard work!! You're doing good!!
+
+--Shawn
+
+Hey Vera,
+
+As you already told me, the project does not run. Remember this is one of, if not the toughest projects at Epicodus. Leilani and I can't help you directly, but we can provide you resources.
+
+Please resubmit this project by the end of the day on Sunday.
+
+Keep up the hard work Vera! You got this!
+
+--Shawn
+
+
+
+Steps for DB Adding/Removing Dependencies: 
+dotnet add package Microsoft.EntityFrameworkCore= incompatible
+dotnet add package Pomelo.EntityFrameworkCore.MySql = Restored;
+
+
 
 Pierre's Sweet and Savory Treats
 Pierre is back! He wants you to create a new application to market his sweet and savory treats. This time, he would like you to build an application with user authentication and a many-to-many relationship. Here are the features he wants in the application:

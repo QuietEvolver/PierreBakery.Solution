@@ -16,5 +16,60 @@
       <br>
       <img src="~/Images/Pierre.jpg" />
     </div>
+    <footer class="text-center section-scroll" id="footer">
+		<div class="row mobile_show"><hr></div>
+		<div class="row mobile_show"><br></div>
+		<div class="row mobile_show"><br></div>
+		<div class="row">
+      <div class="col">
+				<a href="term_of_use.php" target="_self" class="footer_links">Website Terms of Use</a> <a class="pipes">|</a> <a href="website_privacy_statement.php" target="_self" class="footer_links">Website Privacy Statement</a> <a class="pipes">|</a> <a href="cookie_policy.php" target="_self" class="footer_links">Cookie Policy</a>
+				<a id="copy_right">© 2019 The Cronos Group, All rights reserved</a>
+		</div>
+		</div>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.cslider.js"></script>
+
+		<!-- team profile image slider -->
+		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="js/jquery.elastislide.js"></script>
+		<script type="text/javascript" src="js/gallery.js"></script>
+		<script type="text/javascript" src="js/index_script.js"></script>
+		<script type="text/javascript" src="js/read_more_script.js"></script>
+
+		<!-- scroll smoothly to next div -->
+	  <!-- <script src="js/jquery.scrollify.js"></script>  -->
+
+
+		<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+			<div class="rg-image-wrapper">
+
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
+		<!-- lock the header -->
+		<script>
+		    window.onscroll = function() {myFunction()};
+
+		    var header = document.getElementById("header");
+		    var sticky = header.offsetTop;
+
+		    function myFunction() {
+		      if (window.pageYOffset > sticky) {
+		        header.classList.add("sticky");
+		      } else {
+		        header.classList.remove("sticky");
+		      }
+		    }
+		</script>
+
+		</footer>
   </body>
 </html>

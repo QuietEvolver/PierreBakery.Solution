@@ -173,7 +173,6 @@ namespace PierreBakery.Migrations
                     FlavorId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
-                    Author = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -188,28 +187,117 @@ namespace PierreBakery.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeFlavor",
+                name: "Treats",
                 columns: table => new
                 {
-                    EmployeeFlavorId = table.Column<int>(nullable: false)
+                    TreatId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FlavorId = table.Column<int>(nullable: false),
-                    EmployeeId = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeFlavor", x => x.EmployeeFlavorId);
+                    table.PrimaryKey("PK_Treats", x => x.TreatId);
                     table.ForeignKey(
-                        name: "FK_EmployeeFlavor_Flavors_FlavorId",
+                        name: "FK_Treats_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Kinds",
+                columns: table => new
+                {
+                    KindId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    FlavorId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kinds", x => x.KindId);
+                    table.ForeignKey(
+                        name: "FK_Kinds_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Kinds_Flavors_FlavorId",
                         column: x => x.FlavorId,
                         principalTable: "Flavors",
                         principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeFlavor_Employees_EmployeeId",
+                        name: "FK_Kinds_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TreatFlavor",
+                columns: table => new
+                {
+                    TreatFlavorId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TreatId = table.Column<int>(nullable: false),
+                    FlavorId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TreatFlavor", x => x.TreatFlavorId);
+                    table.ForeignKey(
+                        name: "FK_TreatFlavor_Flavors_FlavorId",
+                        column: x => x.FlavorId,
+                        principalTable: "Flavors",
+                        principalColumn: "FlavorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TreatFlavor_Treats_TreatId",
+                        column: x => x.TreatId,
+                        principalTable: "Treats",
+                        principalColumn: "TreatId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TreatFlavor_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeKind",
+                columns: table => new
+                {
+                    EmployeeKindId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    KindId = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    CheckDate = table.Column<DateTime>(nullable: false),
+                    DueDate = table.Column<DateTime>(nullable: false),
+                    ReturnDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeKind", x => x.EmployeeKindId);
+                    table.ForeignKey(
+                        name: "FK_EmployeeKind_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeKind_Kinds_KindId",
+                        column: x => x.KindId,
+                        principalTable: "Kinds",
+                        principalColumn: "KindId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -251,19 +339,54 @@ namespace PierreBakery.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeKind_EmployeeId",
+                table: "EmployeeKind",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeKind_KindId",
+                table: "EmployeeKind",
+                column: "KindId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Flavors_UserId",
                 table: "Flavors",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeFlavor_FlavorId",
-                table: "EmployeeFlavor",
+                name: "IX_Kinds_EmployeeId",
+                table: "Kinds",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Kinds_FlavorId",
+                table: "Kinds",
                 column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeFlavor_EmployeeId",
-                table: "EmployeeFlavor",
-                column: "EmployeeId");
+                name: "IX_Kinds_UserId",
+                table: "Kinds",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TreatFlavor_FlavorId",
+                table: "TreatFlavor",
+                column: "FlavorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TreatFlavor_TreatId",
+                table: "TreatFlavor",
+                column: "TreatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TreatFlavor_UserId",
+                table: "TreatFlavor",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Treats_UserId",
+                table: "Treats",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -284,16 +407,25 @@ namespace PierreBakery.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EmployeeFlavor");
+                name: "EmployeeKind");
+
+            migrationBuilder.DropTable(
+                name: "TreatFlavor");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Flavors");
+                name: "Kinds");
+
+            migrationBuilder.DropTable(
+                name: "Treats");
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Flavors");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
