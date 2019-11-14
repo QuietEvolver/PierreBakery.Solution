@@ -108,31 +108,29 @@ PierreBakery
     > foreign key  (TreatId) REFERENCES Treats(TreatId),
     > primary key (TreatFlavorId)
     > );
-
   
 Regarding database Initialization: 
 * drop database 
 * delete contents of  Migrations folder 
- - keep the following files: 
---[Timestamp]_Initial.cs
---[Timestamp]_Initial.Designer.cs
---MyContextModelSnapshot.cs
-The replacement code belongs in the last file:
+  - keep the following files: 
+  - --[Timestamp]_Initial.cs
+  - --[Timestamp]_Initial.Designer.cs
+  - --MyContextModelSnapshot.cs
+
+- The replacement code belongs in the last file:
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YourProjectFolderNameHere.Migrations
 {
     public partial class Initial : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-
-        }
+      protected override void Up(MigrationBuilder migrationBuilder)
+      {
+      }
+      protected override void Down(MigrationBuilder migrationBuilder)
+      {
+      }
     }
 }
 * run in terminal: dotnet ef migrations add Initial 
@@ -157,4 +155,4 @@ You can learn more about our vision for Pierre's Bakery in the [**PierreBakery**
 | quietevolver| [quietevolver](https://github.com/quietevolver) |  [quiet.evolver@gmail.com](mailto:quietevolver@gmail.com) |
 
 ## 📄 License
- MIT licensed, as found in the [LICENSE][http://www.law.uh.edu/faculty/wstreng/Leiden/LLM1ChoiceofEntityCHARTS.pdf] file.
+ MIT licensed, as found in the [LICENSE](http://www.law.uh.edu/faculty/wstreng/Leiden/LLM1ChoiceofEntityCHARTS.pdf) file.
