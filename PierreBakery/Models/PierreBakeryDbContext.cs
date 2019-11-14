@@ -11,7 +11,7 @@ namespace PierreBakery.Models
     public DbSet<TreatFlavor> TreatFlavor { get; set; }
     public DbSet<Kind> Kinds { get; set; }
     public DbSet<EmployeeKind> EmployeeKind { get; set; } 
-    public DbSet<EmployeeTreatFlavor> EmployeeTreatFlavor { get; set; }
+    // public DbSet<EmployeeTreatFlavor> EmployeeTreatFlavors { get; set; }
 
     public PierreBakeryContext(DbContextOptions options) : base(options) { }
   }

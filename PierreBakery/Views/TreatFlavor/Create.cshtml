@@ -4,7 +4,7 @@
 
 @model PierreBakery.Models.TreatFlavor
 
-<h4>Add a new kind</h4>
+<h4>Add a new kind for the shoppe</h4>
 
 @using (Html.BeginForm())
 {
@@ -18,4 +18,4 @@
     @Html.DropDownList("TreatId")
     <input type="submit" value="Add new kind" class="btn btn-default" />
 }
-<p>@Html.ActionLink("Show all kinds or Treat(s)/Flavor(s)", "Index")</p>
+<p>@Html.ActionLink("Show all kinds available", "Index")</p>
