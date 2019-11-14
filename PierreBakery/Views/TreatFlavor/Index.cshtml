@@ -14,9 +14,9 @@
 
 @foreach (TreatFlavor treatFlavor in Model)
 {
-  <li>@Html.ActionLink($"{treatFlavor.TreatFlavorId}", "Details", new { id = treatFlavor.TreatFlavorId })</li>
+  <li>@Html.ActionLink($"{treatFlavor.TreatFlavorId}", "Details", "Home")</li>
 }
 
-<p>@Html.ActionLink("Add new kind", "Create")</p>
+
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

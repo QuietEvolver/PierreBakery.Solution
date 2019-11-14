@@ -141,67 +141,6 @@ After Initial is implemented, run the following to update any made changes:
 If an error occurs prior to GitCommit, the following command reverts the migration: 
 * dotnet ef migrations remove
 
-Then, build a class in the Models folder for the new JOIN (ex.CategoryClass) configured in the XXDbContext.cs with the current project folder name: 
-Models/DesignTimeDbContextFactory.cs
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using System.IO;
-
-namespace ToDoList.Models
-{
-  public class ToDoListContextFactory : IDesignTimeDbContextFactory<ToDoListContext>
-  {
-
-    ToDoListContext IDesignTimeDbContextFactory<ToDoListContext>.CreateDbContext(string[] args)
-    {
-      IConfigurationRoot configuration = new ConfigurationBuilder()
-          .SetBasePath(Directory.GetCurrentDirectory())
-          .AddJsonFile("appsettings.json")
-          .Build();
-
-      var builder = new DbContextOptionsBuilder<ToDoListContext>();
-      var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-      builder.UseMySql(connectionString);
-
-      return new ToDoListContext(builder.Options);
-    }
-  }
-}
-
-Following above, build a Models/DesignTimeDbContextFactory.cs file
-GraphQLs: 
-https://developer.github.com/v4/
-
-https://developer.github.com/v4/guides/forming-calls/
-
-MS ex. 
-https://dotnettutorials.net/lesson/token-based-authentication-web-api/
-https://github.com/dotnet-architecture/eShopOnWeb
-download book: file:///Users/Guest/Downloads/Architecting-Modern-Web-Applications-with-ASP.NET-Core-and-Azure.pdf
-https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/
-TypesCRONOS: https://ir.thecronosgroup.com/governance/board-of-directors
-https://thecronosgroup.com/index.php#about
-abrahm-uw: https://github.com/Glacian22/Blobber-Royale-Native-Client
-MVC.NET Pagination: https://www.mikesdotnetting.com/article/328/simple-paging-in-asp-net-core-razor-pages
-RIT: https://scholar.google.com/citations?hl=en&user=hb_08rUAAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=quietevolver99%40gmail.com&gmla=AJsN-F5NJ9PfRIDkbuABEdV53X_uCmEWOSNRyYiwlUusdP-k86O80q5FfTio4OssxKtAxisV77xl-MHOnMBSe8-erZ8DoPfBeZo318bsxe3-1aUnVp8z-RRCwgWzeg9QvA9m_VtrHa9o796SFnVDWmjuSMK7YWutxcjgMtILNpnUBkAwetTRa9zEwEahVkxWvjatheTd8Mpw0S9ot2i3Yyjs9zSc5cV3j_k3ASdJx9ksAfQ9WLtJZSztaz-0jJbzHvLyZIJm6ip_
-RITsmelss: https://github.com/search?q=cnewman%40se.rit.edu&type=Code
-DownLOAD tsDETECT in RIT (open source) CLI: https://testsmells.github.io/
-SWAGGER API: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
-swaggerOauth: https://swagger.io/docs/specification/authentication/
-https://www.kronos.com/
-
-Pierre's Sweet and Savory Treats
-Pierre is back! He wants you to create a new application to market his sweet and savory treats. This time, he would like you to build an application with user authentication and a many-to-many relationship. Here are the features he wants in the application:
-
-The application should have user authentication. A user should be able to log in and log out. Only logged in users should have create, update and delete functionality. All users should be able to have read functionality.
-There should be a many-to-many relationship between Treats and Flavors. A treat can have many flavors (such as sweet, savory, spicy, or creamy) and a flavor can have many treats. For instance, the "sweet" flavor could include chocolate croissants, cheesecake, and so on.
-A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.d32ff643
-
-dotnet ef migrations add Initial
-dotnet ef database update
-
 ## 🚀 Upgrading and Contributions 👏
 
 The main purpose of this repository is to continue evolving. I am grateful to the community for feedback, contributing bugfixes, and improvements.

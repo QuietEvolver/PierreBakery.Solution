@@ -73,6 +73,15 @@ namespace PierreBakery.Controllers
 
     // public ActionResult Details(int id)
     // {
+    //     var thisTreat = _db.Treats
+    //         .Include(treat => treat.Flavors)
+    //         .ThenInclude(join => join.Flavor)
+    //         .FirstOrDefault(treat => treat.TreatId == id);
+    //     return View(thisTreat);
+    // }
+
+    // public ActionResult Details(int id)
+    // {
     //     var thisKind = _db.Kinds
     //         .Include(kind => kind.Employees)
     //         .ThenInclude(join => join.Employee)
@@ -80,24 +89,24 @@ namespace PierreBakery.Controllers
     //     return View(thisKind);
     // }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
-    //   ViewBag.EmployeeId = new SelectList(_db.Employees, "EmployeeId", "Name");
-    //   return View(thisKind);
-    // }
+    public ActionResult Edit(int id)
+    {
+      var thisKind = _db.Kinds.FirstOrDefault(kinds => kinds.KindId == id);
+      ViewBag.EmployeeId = new SelectList(_db.Employees, "EmployeeId", "Name");
+      return View(thisKind);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Kind kind, int EmployeeId)
-    // {
-    //   if (EmployeeId != 0)
-    //   {
-    //     _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
-    //   }
-    //   _db.Entry(kind).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Kind kind, int EmployeeId)
+    {
+      if (EmployeeId != 0)
+      {
+        _db.EmployeeKind.Add(new EmployeeKind() { EmployeeId = EmployeeId, KindId = kind.KindId });
+      }
+      _db.Entry(kind).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     // public ActionResult Delete(int id)
     // {
